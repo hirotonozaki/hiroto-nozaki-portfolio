@@ -82,7 +82,7 @@
         <span class="c-logo__mark" aria-hidden="true">N</span>
         <span class="c-logo__text">
           <span class="c-logo__name">Hiroto Nozaki</span>
-          <span class="c-logo__role">Portfolio · 2026</span>
+          <span class="c-logo__role">Portfolio · 2027</span>
         </span>
       </a>
 
@@ -115,7 +115,7 @@
       <div class="l-container p-hero__inner">
         <p class="p-hero__eyebrow" data-reveal>
           <span class="c-pulse" aria-hidden="true"></span>
-          Portfolio · Open to Work — 2026 Spring
+          Portfolio · Open to Work — 2027 Spring
         </p>
 
         <h1 class="p-hero__heading" id="heroHeading">
@@ -133,7 +133,13 @@
           見た目だけではなく、<em>ユーザーが迷わず使える構造</em>を意識しています。
         </p>
 
-        <div class="p-hero__cta" data-reveal data-reveal-delay="4">
+        <ul class="p-hero__tech" data-reveal data-reveal-delay="4" aria-label="主な使用技術">
+          <li>HTML · CSS · JavaScript</li>
+          <li>React · TypeScript</li>
+          <li>WordPress</li>
+        </ul>
+
+        <div class="p-hero__cta" data-reveal data-reveal-delay="5">
           <a href="#works" class="c-btn c-btn--primary">
             制作物を見る
             <span class="c-btn__arrow" aria-hidden="true">→</span>
@@ -143,7 +149,7 @@
           </a>
         </div>
 
-        <dl class="p-hero__selected" data-reveal data-reveal-delay="5" aria-label="Selected Works">
+        <dl class="p-hero__selected" data-reveal data-reveal-delay="6" aria-label="Selected Works">
           <p class="p-hero__selected-label">
             <span class="p-hero__selected-label-line" aria-hidden="true"></span>
             Selected Works · Practice / Fictional Client Works
@@ -199,6 +205,9 @@
             <p>
               苦労したのは「焼肉 黒耀」の画像最適化でした。2MB級のJPEGを並べて「動けばOK」にしてしまい、Lighthouseで現実を突きつけられました。以降、次の作品では前作の弱点を潰すサイクルで取り組んでいます。
             </p>
+            <p>
+              Vanilla JS で焼肉 黒耀の予約UIを作る中で、状態管理とDOM操作が複雑化していく手触りに違和感が残り、<em>React と TypeScript で再設計</em>を始めました（Project 01+）。型と宣言的UIが設計時点でミスを拾ってくれる体験は、自分のコードを書く前提を変えました。
+            </p>
           </div>
 
           <ul class="p-about__strengths" aria-label="3つの強み">
@@ -236,7 +245,7 @@
         <header class="c-section-head" data-reveal>
           <p class="c-section-head__label">02 — Works</p>
           <h2 class="c-section-head__title" id="worksHeading">
-            企画から実装まで、<br><em>一気通貫</em> で担当した4作品。
+            企画から実装まで、<br><em>一気通貫</em>で担当した作品群。
           </h2>
           <p class="c-section-head__desc">
             各作品には Live Site／ソースコード／企画書（PDF）の3点を用意しています。
@@ -247,7 +256,7 @@
         <ul class="p-works__list">
 
           <!-- 作品 01 -->
-          <li class="p-works__item" data-reveal>
+          <li class="p-works__item" id="project-01" data-reveal>
             <article class="c-work">
               <div class="c-work__head">
                 <p class="c-work__num">Project 01</p>
@@ -271,8 +280,56 @@
             </article>
           </li>
 
+          <!-- 作品 01+ ─ React Edition -->
+          <li class="p-works__item" id="project-01-react" data-reveal data-reveal-delay="1">
+            <article class="c-work c-work--react">
+              <div class="c-work__head">
+                <p class="c-work__num">Project 01<span aria-hidden="true">+</span></p>
+                <span class="c-work__category">Brand Site · React Edition</span>
+              </div>
+              <h3 class="c-work__title">焼肉 黒耀 — React Edition</h3>
+
+              <p class="c-work__body">
+                Vanilla で組んだ予約 UI を、React + TypeScript で組み直しました。<code>CourseCard</code> などを共有コンポーネントに切り出し、状態は Context に集約しています。
+              </p>
+
+              <ul class="c-work__chips" aria-label="Vanilla から React への主な変更点">
+                <li>
+                  <span class="c-work__chip-from">DOM 操作</span>
+                  <span class="c-work__chip-arrow" aria-hidden="true">→</span>
+                  <span class="c-work__chip-to">useState / Context</span>
+                </li>
+                <li>
+                  <span class="c-work__chip-from">手動更新</span>
+                  <span class="c-work__chip-arrow" aria-hidden="true">→</span>
+                  <span class="c-work__chip-to">自動再描画</span>
+                </li>
+                <li>
+                  <span class="c-work__chip-from">Global CSS</span>
+                  <span class="c-work__chip-arrow" aria-hidden="true">→</span>
+                  <span class="c-work__chip-to">SCSS Modules</span>
+                </li>
+                <li>
+                  <span class="c-work__chip-from">Untyped</span>
+                  <span class="c-work__chip-arrow" aria-hidden="true">→</span>
+                  <span class="c-work__chip-to">TypeScript</span>
+                </li>
+              </ul>
+
+              <dl class="c-work__meta">
+                <div><dt>Stack</dt><dd>React 18 / TypeScript / Vite / SCSS Modules / React Router</dd></div>
+              </dl>
+
+              <ul class="c-work__links">
+                <li><a href="https://hirotonozaki.github.io/yakiniku-kokuyou-react/" class="c-work__link c-work__link--primary" target="_blank" rel="noopener noreferrer">Live Site<span aria-hidden="true">↗</span></a></li>
+                <li><a href="https://github.com/hirotonozaki/yakiniku-kokuyou-react" class="c-work__link" target="_blank" rel="noopener noreferrer">GitHub<span aria-hidden="true">↗</span></a></li>
+                <li><a href="#project-01" class="c-work__link">Vanilla 版を見る<span aria-hidden="true">↑</span></a></li>
+              </ul>
+            </article>
+          </li>
+
           <!-- 作品 02 -->
-          <li class="p-works__item" data-reveal data-reveal-delay="1">
+          <li class="p-works__item" data-reveal data-reveal-delay="2">
             <article class="c-work">
               <div class="c-work__head">
                 <p class="c-work__num">Project 02</p>
@@ -297,7 +354,7 @@
           </li>
 
           <!-- 作品 03 -->
-          <li class="p-works__item" data-reveal data-reveal-delay="2">
+          <li class="p-works__item" data-reveal data-reveal-delay="3">
             <article class="c-work">
               <div class="c-work__head">
                 <p class="c-work__num">Project 03</p>
@@ -322,7 +379,7 @@
           </li>
 
           <!-- 作品 04 -->
-          <li class="p-works__item" data-reveal data-reveal-delay="3">
+          <li class="p-works__item" data-reveal data-reveal-delay="4">
             <article class="c-work">
               <div class="c-work__head">
                 <p class="c-work__num">Project 04</p>
@@ -429,7 +486,21 @@
             </ul>
           </div>
 
-          <div class="c-skill-card" data-reveal data-reveal-delay="6">
+          <div class="c-skill-card c-skill-card--accent" data-reveal data-reveal-delay="6">
+            <p class="c-skill-card__num">SK / 05<span aria-hidden="true">+</span></p>
+            <h3 class="c-skill-card__title">
+              React · TypeScript
+              <span class="c-skill-card__badge c-skill-card__badge--strong">実装経験あり</span>
+            </h3>
+            <ul class="c-skill-card__list">
+              <li>React 18（関数コンポーネント / Hooks）</li>
+              <li>TypeScript（Props・State の型定義）</li>
+              <li>Vite / SCSS Modules / React Router</li>
+              <li>useState / useReducer / Context での状態管理</li>
+            </ul>
+          </div>
+
+          <div class="c-skill-card" data-reveal data-reveal-delay="7">
             <p class="c-skill-card__num">SK / 06</p>
             <h3 class="c-skill-card__title">Performance</h3>
             <ul class="c-skill-card__list">
@@ -440,7 +511,7 @@
             </ul>
           </div>
 
-          <div class="c-skill-card" data-reveal data-reveal-delay="7">
+          <div class="c-skill-card" data-reveal data-reveal-delay="8">
             <p class="c-skill-card__num">SK / 07</p>
             <h3 class="c-skill-card__title">Tools &amp; Workflow</h3>
             <ul class="c-skill-card__list">
@@ -451,7 +522,7 @@
             </ul>
           </div>
 
-          <div class="c-skill-card" data-reveal data-reveal-delay="8">
+          <div class="c-skill-card" data-reveal data-reveal-delay="9">
             <p class="c-skill-card__num">SK / 08</p>
             <h3 class="c-skill-card__title">Design</h3>
             <ul class="c-skill-card__list">
@@ -462,11 +533,11 @@
             </ul>
           </div>
 
-          <div class="c-skill-card c-skill-card--learning" data-reveal data-reveal-delay="9">
+          <div class="c-skill-card" data-reveal data-reveal-delay="10">
             <p class="c-skill-card__num">SK / 09</p>
             <h3 class="c-skill-card__title">
               WordPress
-              <span class="c-skill-card__badge">学習中</span>
+              <span class="c-skill-card__badge c-skill-card__badge--strong">実装・運用経験あり</span>
             </h3>
             <ul class="c-skill-card__list">
               <li>サイト更新・修正対応（インターン実務）</li>
@@ -543,7 +614,7 @@
             <span class="c-logo__mark" aria-hidden="true">N</span>
             <span class="c-logo__text">
               <span class="c-logo__name">Hiroto Nozaki</span>
-              <span class="c-logo__role">Portfolio · 2026</span>
+              <span class="c-logo__role">Portfolio · 2027</span>
             </span>
           </a>
           <p class="l-footer__tagline">伝わる順番を、設計する。</p>
@@ -563,6 +634,7 @@
           <p class="l-footer__nav-label">Projects</p>
           <ul>
             <li><a href="https://hirotonozaki.github.io/yakiniku-kokuyou/" target="_blank" rel="noopener noreferrer">焼肉 黒耀<span aria-hidden="true">↗</span></a></li>
+            <li><a href="https://hirotonozaki.github.io/yakiniku-kokuyou-react/" target="_blank" rel="noopener noreferrer">焼肉 黒耀 — React Edition<span aria-hidden="true">↗</span></a></li>
             <li><a href="https://hirotonozaki.github.io/nova-tech-careers/" target="_blank" rel="noopener noreferrer">NOVA TECH CAREERS<span aria-hidden="true">↗</span></a></li>
             <li><a href="https://hirotonozaki.github.io/nexus-corporate/" target="_blank" rel="noopener noreferrer">NEXUS Inc.<span aria-hidden="true">↗</span></a></li>
             <li><a href="./assets/pdf/noir-mens-clinic-proposal.pdf" target="_blank" rel="noopener noreferrer">NOIR MEN'S CLINIC<span aria-hidden="true">↗</span></a></li>
@@ -571,7 +643,7 @@
       </div>
 
       <div class="l-footer__bottom">
-        <small>© <span data-current-year>2026</span> Hiroto Nozaki. Portfolio Work.</small>
+        <small>© 2027 Hiroto Nozaki. Portfolio Work.</small>
         <small class="l-footer__note">本サイト掲載の制作物はすべて架空企業を題材としたポートフォリオ作品です。</small>
       </div>
     </div>
