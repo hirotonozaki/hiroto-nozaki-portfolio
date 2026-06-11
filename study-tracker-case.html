@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="color-scheme" content="dark">
+
+  <title>Study Tracker — Case Study | Hiroto Nozaki</title>
+  <meta name="description" content="React / TypeScript / Supabase で構築し Vercel に公開した学習管理アプリ Study Tracker のケーススタディ。制作背景・課題・設計・Supabase連携・CRUD機能・苦労した点・学んだこと・今後の改善案までをまとめた制作実績です。">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="robots" content="index,follow">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://hirotonozaki.github.io/hiroto-nozaki-portfolio/study-tracker-case.html">
+  <meta property="og:title" content="Study Tracker — Case Study">
+  <meta property="og:description" content="React / TypeScript / Supabase で構築し Vercel に公開した学習管理アプリのケーススタディ。設計・DB・CRUD・デプロイまで一人で構築。">
+  <meta property="og:site_name" content="Hiroto Nozaki Portfolio">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:image" content="https://hirotonozaki.github.io/hiroto-nozaki-portfolio/assets/images/study-tracker-thumb.png">
+
+  <link rel="canonical" href="https://hirotonozaki.github.io/hiroto-nozaki-portfolio/study-tracker-case.html">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0a'/%3E%3Ctext x='16' y='22' font-family='serif' font-size='18' font-style='italic' fill='%23c9a96e' text-anchor='middle'%3EN%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./css/style.css">
+
+  <noscript>
+    <style>[data-reveal]{opacity:1!important;transform:none!important;}</style>
+  </noscript>
+
+  <!-- ============================================================
+       Case-study local styles (p-case 名前空間) — jpa-case.html と共通方式
+       ============================================================ -->
+  <style>
+    .p-case-bc{display:flex;align-items:center;gap:.6em;font-family:var(--f-mono);
+      font-size:.72rem;letter-spacing:.08em;color:var(--c-text-3);
+      padding-top:calc(var(--header-h) + 2.4rem);flex-wrap:wrap;}
+    .p-case-bc a{color:var(--c-text-2);transition:color var(--dur-fast) var(--ease-out);}
+    .p-case-bc a:hover{color:var(--c-gold);}
+    .p-case-bc span[aria-hidden]{color:var(--c-text-4);}
+
+    .p-case-hero{padding:2.4rem 0 var(--s-8);}
+    .p-case-hero__cat{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.12em;
+      color:var(--c-gold);text-transform:uppercase;margin-bottom:.8rem;
+      display:flex;align-items:center;gap:.8em;}
+    .p-case-hero__cat::before{content:"";width:1.6em;height:1px;background:var(--c-border-gold);}
+    .p-case-hero__title{font-family:var(--f-display);font-weight:400;line-height:1.18;
+      font-size:clamp(2.1rem,5.4vw,3.6rem);letter-spacing:.01em;margin-bottom:1.2rem;}
+    .p-case-hero__title em{color:var(--c-gold);}
+    .p-case-hero__lead{max-width:64ch;color:var(--c-text-2);font-size:1rem;line-height:2;}
+    .p-case-hero__lead em{color:var(--c-gold);}
+    .p-case-hero__links{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:var(--s-6);}
+    .p-case-hero__visual{margin-top:var(--s-7);border:1px solid var(--c-border);
+      border-radius:var(--r-lg);overflow:hidden;background:var(--c-bg-1);
+      box-shadow:0 30px 80px -40px rgba(0,0,0,.8);}
+    .p-case-hero__visual img{width:100%;display:block;}
+    .p-case-hero__visual figcaption{font-family:var(--f-mono);font-size:.7rem;
+      letter-spacing:.08em;color:var(--c-text-3);padding:.9em 1.2em;border-top:1px solid var(--c-border);}
+
+    .p-case-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+      background:var(--c-border);border:1px solid var(--c-border);
+      border-radius:var(--r);overflow:hidden;margin-top:var(--s-7);}
+    .p-case-meta div{background:var(--c-bg);padding:1.3rem 1.4rem;}
+    .p-case-meta dt{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.1em;
+      color:var(--c-text-3);text-transform:uppercase;margin-bottom:.5em;}
+    .p-case-meta dd{font-size:.9rem;color:var(--c-text);line-height:1.5;}
+
+    .p-case-sec{padding:var(--s-9) 0;border-top:1px solid var(--c-border);}
+    .p-case-sec__head{margin-bottom:var(--s-7);}
+    .p-case-sec__label{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.14em;
+      color:var(--c-gold);text-transform:uppercase;margin-bottom:.9rem;
+      display:flex;align-items:center;gap:.8em;}
+    .p-case-sec__label::before{content:"";width:1.6em;height:1px;background:var(--c-border-gold);}
+    .p-case-sec__title{font-family:var(--f-display);font-weight:400;
+      font-size:clamp(1.5rem,3.2vw,2.1rem);line-height:1.3;letter-spacing:.01em;}
+    .p-case-sec__title em{color:var(--c-gold);}
+    .p-case-sec__desc{margin-top:1rem;max-width:66ch;color:var(--c-text-2);font-size:.94rem;line-height:1.9;}
+
+    .p-case-prose{max-width:72ch;color:var(--c-text-2);font-size:.96rem;line-height:2.05;}
+    .p-case-prose p + p{margin-top:1.2em;}
+    .p-case-prose em{color:var(--c-gold);}
+
+    .p-case-list{max-width:72ch;display:flex;flex-direction:column;gap:.9rem;}
+    .p-case-list li{position:relative;padding-left:1.5em;color:var(--c-text-2);
+      font-size:.92rem;line-height:1.85;}
+    .p-case-list li::before{content:"–";position:absolute;left:0;color:var(--c-gold);}
+    .p-case-list li b{color:var(--c-text);font-weight:500;}
+    .p-case-list li code{font-family:var(--f-mono);font-size:.82em;color:var(--c-gold-bright);
+      background:var(--c-gold-pale);padding:.1em .4em;border-radius:3px;}
+
+    .p-case-flow{display:grid;grid-template-columns:repeat(5,1fr);gap:0;
+      counter-reset:flow;border:1px solid var(--c-border);border-radius:var(--r);overflow:hidden;}
+    .p-case-flow__step{position:relative;padding:1.5rem 1.1rem;background:var(--c-bg);
+      border-right:1px solid var(--c-border);}
+    .p-case-flow__step:last-child{border-right:0;}
+    .p-case-flow__step::before{counter-increment:flow;content:"0" counter(flow);
+      font-family:var(--f-display);font-size:1.3rem;color:var(--c-gold);display:block;margin-bottom:.6rem;}
+    .p-case-flow__step h3{font-size:.86rem;color:var(--c-text);margin-bottom:.5rem;font-weight:500;}
+    .p-case-flow__step p{font-size:.76rem;color:var(--c-text-3);line-height:1.6;}
+
+    .p-case-codecap{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.06em;
+      color:var(--c-text-3);margin:1.6rem 0 .5rem;}
+    .p-case-code{background:var(--c-bg-1);border:1px solid var(--c-border);
+      border-left:2px solid var(--c-gold);border-radius:var(--r);
+      padding:1.2rem 1.4rem;overflow-x:auto;}
+    .p-case-code pre{margin:0;}
+    .p-case-code code{font-family:var(--f-mono);font-size:.78rem;line-height:1.95;
+      color:var(--c-text);white-space:pre;display:block;}
+    .p-case-code .cmt{color:var(--c-text-3);}
+    .p-case-code .key{color:var(--c-gold);}
+
+    .p-case-tree{background:var(--c-bg-1);border:1px solid var(--c-border);border-radius:var(--r);
+      padding:1.3rem 1.4rem;overflow-x:auto;margin-bottom:1.4rem;}
+    .p-case-tree pre{margin:0;font-family:var(--f-mono);font-size:.78rem;line-height:2;
+      color:var(--c-text);white-space:pre;}
+    .p-case-tree .d{color:var(--c-text-3);}
+
+    .p-case-note{margin-top:1.4rem;padding:1.1rem 1.4rem;border:1px solid var(--c-border);
+      border-radius:var(--r);background:var(--c-gold-pale);color:var(--c-text-2);
+      font-size:.9rem;line-height:1.8;max-width:72ch;}
+    .p-case-note b{color:var(--c-gold);font-weight:500;}
+
+    .p-case-hl{display:grid;grid-template-columns:1fr 1fr;gap:1px;
+      background:var(--c-border);border:1px solid var(--c-border);border-radius:var(--r);overflow:hidden;}
+    .p-case-hl__item{background:var(--c-bg);padding:1.8rem 1.8rem;}
+    .p-case-hl__num{font-family:var(--f-display);font-size:1.4rem;color:var(--c-gold);margin-bottom:.6rem;}
+    .p-case-hl__item h3{font-size:1rem;color:var(--c-text);margin-bottom:.7rem;font-weight:500;}
+    .p-case-hl__item p{font-size:.88rem;color:var(--c-text-2);line-height:1.85;}
+    .p-case-hl__item code{font-family:var(--f-mono);font-size:.8em;color:var(--c-gold-bright);
+      background:var(--c-gold-pale);padding:.1em .4em;border-radius:3px;}
+
+    .p-case-tech{display:flex;flex-wrap:wrap;gap:.7rem;}
+    .p-case-tech li{font-family:var(--f-mono);font-size:.8rem;letter-spacing:.04em;
+      color:var(--c-text);border:1px solid var(--c-border-2);border-radius:999px;
+      padding:.55em 1.1em;background:var(--c-surface);}
+    .p-case-tech li span{color:var(--c-text-3);margin-left:.5em;}
+
+    .p-case-cta{margin-top:var(--s-9);border:1px solid var(--c-border-gold);border-radius:var(--r-lg);
+      background:linear-gradient(180deg,var(--c-bg-1),var(--c-bg));padding:clamp(2rem,4vw,3.2rem);
+      text-align:center;}
+    .p-case-cta__eyebrow{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.14em;
+      color:var(--c-gold);text-transform:uppercase;margin-bottom:1rem;}
+    .p-case-cta__title{font-family:var(--f-display);font-weight:400;
+      font-size:clamp(1.4rem,3vw,2rem);line-height:1.4;margin-bottom:.8rem;}
+    .p-case-cta__title em{color:var(--c-gold);}
+    .p-case-cta__desc{color:var(--c-text-2);font-size:.9rem;max-width:56ch;margin:0 auto 1.8rem;}
+    .p-case-cta__row{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center;}
+    .p-case-cta__btn{display:inline-flex;align-items:center;gap:.5em;font-size:.9rem;font-weight:500;
+      padding:.85em 1.6em;border-radius:var(--r);transition:transform var(--dur) var(--ease-out),background var(--dur) var(--ease-out),border-color var(--dur) var(--ease-out);}
+    .p-case-cta__btn--primary{background:var(--c-gold);color:#0a0a0a;}
+    .p-case-cta__btn--primary:hover{transform:translateY(-2px);background:var(--c-gold-bright);}
+    .p-case-cta__btn--ghost{border:1px solid var(--c-border-2);color:var(--c-text);}
+    .p-case-cta__btn--ghost:hover{border-color:var(--c-border-gold);color:var(--c-gold);transform:translateY(-2px);}
+
+    .p-case-next{padding:var(--s-8) 0;border-top:1px solid var(--c-border);}
+    .p-case-next a{display:inline-flex;align-items:center;gap:.6em;color:var(--c-text-2);
+      font-family:var(--f-mono);font-size:.82rem;transition:color var(--dur-fast) var(--ease-out);}
+    .p-case-next a:hover{color:var(--c-gold);}
+
+    @media (max-width:900px){
+      .p-case-meta{grid-template-columns:repeat(2,1fr);}
+      .p-case-flow{grid-template-columns:repeat(2,1fr);}
+      .p-case-flow__step{border-bottom:1px solid var(--c-border);}
+      .p-case-hl{grid-template-columns:1fr;}
+    }
+    @media (max-width:560px){
+      .p-case-meta{grid-template-columns:1fr;}
+      .p-case-flow{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+
+  <a class="c-skip-link" href="#main">本文へスキップ</a>
+
+  <header class="l-header" id="header">
+    <div class="l-header__inner">
+      <a class="c-logo" href="./index.html" aria-label="トップへ">
+        <span class="c-logo__mark" aria-hidden="true">N</span>
+        <span class="c-logo__text">
+          <span class="c-logo__name">Hiroto Nozaki</span>
+          <span class="c-logo__role">Portfolio · 2027</span>
+        </span>
+      </a>
+      <nav class="l-header__nav" aria-label="グローバルナビゲーション" id="globalNav">
+        <ul class="c-nav">
+          <li><a href="./index.html#about" class="c-nav__link"><span class="c-nav__num">01</span>About</a></li>
+          <li><a href="./index.html#works" class="c-nav__link"><span class="c-nav__num">02</span>Works</a></li>
+          <li><a href="./index.html#skills" class="c-nav__link"><span class="c-nav__num">03</span>Skills</a></li>
+          <li><a href="./index.html#contact" class="c-nav__link"><span class="c-nav__num">04</span>Contact</a></li>
+        </ul>
+      </nav>
+      <button type="button" class="c-burger" id="burger" aria-controls="globalNav" aria-expanded="false" aria-label="メニューを開く">
+        <span class="c-burger__line"></span>
+        <span class="c-burger__line"></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="l-container">
+
+      <nav class="p-case-bc" aria-label="パンくず">
+        <a href="./index.html">Home</a>
+        <span aria-hidden="true">/</span>
+        <a href="./index.html#works">Works</a>
+        <span aria-hidden="true">/</span>
+        <span>Study Tracker</span>
+      </nav>
+
+      <!-- ============================================================ HERO -->
+      <section class="p-case-hero" aria-labelledby="caseTitle">
+        <p class="p-case-hero__cat" data-reveal>Case Study · Web Application · React / TypeScript / Supabase</p>
+        <h1 class="p-case-hero__title" id="caseTitle" data-reveal data-reveal-delay="1">
+          学習管理アプリ <em>Study Tracker</em>
+        </h1>
+        <p class="p-case-hero__lead" data-reveal data-reveal-delay="2">
+          日々の学習を記録し、合計時間・科目別の内訳・日付別の履歴をダッシュボードで可視化する Web アプリです。
+          バックエンドに <em>Supabase（PostgreSQL）</em>を用い、学習記録の <em>追加・一覧・編集・削除（CRUD）</em> を実装。
+          設計・DB設計から実装、Vercel へのデプロイ・公開まで一人で構築しました。
+        </p>
+
+        <div class="p-case-hero__links" data-reveal data-reveal-delay="3">
+          <a class="p-case-cta__btn p-case-cta__btn--primary" href="https://study-tracker-delta-rouge.vercel.app/" target="_blank" rel="noopener noreferrer">Live Site<span aria-hidden="true">↗</span></a>
+          <a class="p-case-cta__btn p-case-cta__btn--ghost" href="https://hirotonozaki.github.io/study-tracker-proposal/" target="_blank" rel="noopener noreferrer">企画書（Proposal）<span aria-hidden="true">↗</span></a>
+          <a class="p-case-cta__btn p-case-cta__btn--ghost" href="https://github.com/hirotonozaki/study-tracker" target="_blank" rel="noopener noreferrer">GitHub<span aria-hidden="true">↗</span></a>
+        </div>
+
+        <figure class="p-case-hero__visual" data-reveal data-reveal-delay="4">
+          <img src="./assets/images/study-tracker-thumb.png" alt="Study Tracker のダッシュボード画面。合計学習時間・科目別の内訳（横棒グラフ）・最近の記録が、白×インディゴの SaaS 風 UI で表示されている。">
+          <figcaption>Dashboard — React + TypeScript + Supabase</figcaption>
+        </figure>
+
+        <dl class="p-case-meta" data-reveal data-reveal-delay="5">
+          <div><dt>Type</dt><dd>学習管理 Web アプリ<br>（SPA・公開中）</dd></div>
+          <div><dt>Role</dt><dd>設計 / DB設計 /<br>実装 / デプロイ</dd></div>
+          <div><dt>Stack</dt><dd>React 18 / TypeScript /<br>Vite / SCSS</dd></div>
+          <div><dt>Backend</dt><dd>Supabase（PostgreSQL）<br>CRUD / RLS</dd></div>
+        </dl>
+      </section>
+
+      <!-- ============================================================ 01 制作背景 -->
+      <section class="p-case-sec" aria-labelledby="bg">
+        <header class="p-case-sec__head">
+          <p class="p-case-sec__label">01 — Background</p>
+          <h2 class="p-case-sec__title" id="bg">制作<em>背景</em></h2>
+        </header>
+        <div class="p-case-prose" data-reveal>
+          <p>
+            これまで HTML / CSS / WordPress での Web 制作を中心に学んできましたが、
+            <em>「データベースに繋いで、データを保存・更新する Web アプリ」</em> を自分で一から作り、
+            <em>公開まで一人で完遂した経験</em> を形にしたいと考えていました。
+          </p>
+          <p>
+            学習記録アプリは、追加・取得・更新・削除（CRUD）と、合計時間・科目別といった集計が一通り必要で、
+            SaaS のダッシュボードのような UI も練習できます。「DB を使った Web アプリ開発」を理解し、
+            実際に動くものを公開するのにちょうどよい題材として選びました。
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================ 02 課題 -->
+      <section class="p-case-sec" aria-labelledby="pb">
+        <header class="p-case-sec__head">
+          <p class="p-case-sec__label">02 — Problem</p>
+          <h2 class="p-case-sec__title" id="pb"><em>課題</em>設定</h2>
+          <p class="p-case-sec__desc">解決したいことを、ユーザー視点と自分の技術的なゴールに分けて整理しました。</p>
+        </header>
+        <ul class="p-case-list" data-reveal>
+          <li><b>ユーザーが解決したいこと：</b>勉強した内容を手軽に記録し、「どの科目をどれだけやったか」を一目で振り返れるようにする。</li>
+          <li><b>DBに繋いで CRUD：</b>Supabase（PostgreSQL）をバックエンドに、追加・一覧・編集・削除を一通り実装する。</li>
+          <li><b>型で壊れにくく：</b>DB の行・フォーム入力・集計結果を TypeScript の型で表現する。</li>
+          <li><b>集計を可視化：</b>合計時間・科目別・日付別の集計を自分で実装し、ダッシュボードに表示する。</li>
+          <li><b>公開する：</b>Vercel + Supabase でデプロイし、URL でアクセスできる状態にする。</li>
+        </ul>
+      </section>
+
+      <!-- ============================================================ 03 使用技術 -->
+      <section class="p-case-sec" aria-labelledby="tech">
+        <header class="p-case-sec__head">
+          <p class="p-case-sec__label">03 — Tech Stack</p>
+          <h2 class="p-case-sec__title" id="tech"><em>使用技術</em></h2>
+          <p class="p-case-sec__desc">それぞれ「なぜ使うのか」を意識して選びました。フロントは React / TypeScript、バックエンドは Supabase を中心に構成しています。</p>
+        </header>
+        <ul class="p-case-tech" data-reveal>
+          <li>React 18 <span>宣言的UI</span></li>
+          <li>TypeScript <span>型安全</span></li>
+          <li>Vite <span>開発環境</span></li>
+          <li>Supabase <span>DB / API</span></li>
+          <li>PostgreSQL <span>データ保存</span></li>
+          <li>React Router <span>画面遷移</span></li>
+          <li>SCSS <span>スタイル管理</span></li>
+          <li>Vercel <span>デプロイ</span></li>
+        </ul>
+        <ul class="p-case-list" data-reveal>
+          <li><b>Supabase を選んだ理由：</b>サーバーを自前で立てずに本格的な PostgreSQL をすぐ使え、JS クライアントから CRUD を素直に書ける。RLS・Auth による「デモ → 本番（ユーザー別データ）」への発展経路も明確で、個人で「設計 → 実装 → 公開」まで完結しやすい。</li>
+          <li><b>Vercel を選んだ理由：</b>GitHub と連携し <code>push</code> だけでビルド・公開が自動化。環境変数で接続情報・公開APIキーを安全に管理でき、SPA の静的配信に最適で HTTPS URL をすぐ共有できる。</li>
+        </ul>
+      </section>
+
+      <!-- ============================================================ 04 設計 -->
+      <section class="p-case-sec" aria-labelledby="design">
+        <header class="p-case-sec__head">
+          <p class="p-case-sec__label">04 — Architecture</p>
+          <h2 class="p-case-sec__title" id="design"><em>設計</em></h2>
+          <p class="p-case-sec__desc">画面・コンポーネント・データの3つの観点で設計しました。「状態を持つ／DBを呼ぶ層」と「受け取って表示する層」を分けています。</p>
+        </header>
+        <div data-reveal>
+          <div class="p-case-tree">
+<pre>App                  <span class="d">// 学習記録ストア(useStudyRecords)を1つ持ち、各ページへ渡す</span>
+└─ Layout            <span class="d">// サイドバー + メイン（SaaS 風シェル）</span>
+   ├─ Dashboard      <span class="d">// 集計して表示するだけ（表示専任）</span>
+   └─ Records        <span class="d">// 編集対象を管理するページ</span>
+      ├─ RecordForm  <span class="d">// 入力・バリデーション・送信</span>
+      └─ RecordList  <span class="d">// 日付別の一覧（編集・削除）</span>
+
+useStudyRecords      <span class="d">// 取得 + CRUD を集約し、state を更新して即時反映</span>
+api.ts               <span class="d">// Supabase への CRUD（画面から SQL を隠す層）</span></pre>
+          </div>
+          <ul class="p-case-list">
+            <li><b>画面：</b>「ダッシュボード（集計表示）」と「学習記録（CRUD操作）」の2画面を React Router で切り替え。</li>
+            <li><b>コンポーネント：</b>データ操作を <code>api.ts</code> と <code>useStudyRecords</code> に集約し、画面側は表示に専念。</li>
+            <li><b>データ：</b>学習記録は <code>study_records</code> テーブル1つで表現（科目・分・日付・メモ）。集計はアプリ側の純粋関数で算出。</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ============================================================ 05 Supabase連携 -->
+      <section class="p-case-sec" aria-labelledby="supa">
+        <header class="p-case-sec__head">
+          <p class="p-case-sec__label">05 — Supabase</p>
+          <h2 class="p-case-sec__title" id="supa"><em>Supabase</em> 連携</h2>
+          <p class="p-case-sec__desc">PostgreSQL のテーブルに対し、JS クライアント経由でデータを読み書きします。テーブル・RLS・環境変数の3点を設定しました。</p>
+        </header>
+        <div data-reveal>
+          <ul class="p-case-list">
+            <li><b>テーブル：</b><code>study_records</code>（id / subject / minutes / studied_on / memo / created_at）を SQL Editor で作成。並び替え・集計用にインデックスを付与。</li>
+            <li><b>RLS（Row Level Security）：</b>有効化し、ポリシーで操作を制御。今回はログイン無しのデモのため anon に CRUD を許可。</li>
+            <li><b>環境変数：</b>接続情報（URL / 公開APIキー）を <code>.env</code> と Vercel の環境変数に設定。<code>VITE_</code> 接頭辞でビルド時に注入。</li>
+          </ul>
+          <p class="p-case-codecap" data-reveal>lib/supabase.ts — クライアント生成（未設定を検知）</p>
+          <div class="p-case-code" data-reveal>
+<pre><code><span class="key">import</span> { createClient } <span class="key">from</span> '@supabase/supabase-js';
+
+<span class="key">const</span> url = import.meta.env.VITE_SUPABASE_URL;
+<span class="key">const</span> anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+<span class="key">if</span> (!url || !anonKey) {
+  <span class="key">throw new</span> Error('Supabase の環境変数が未設定です。');
+}
+
+<span class="key">export const</span> supabase = createClient(url, anonKey);</code></pre>
+          </div>
+          <div class="p-case-note">
+            <b>本番化のときの注意</b>　いまは「ログイン無しのデモ」のため anon に書き込みを許可しています。実運用では Supabase Auth を導入し、<code>user_id</code> 列を追加して「自分の記録だけ操作できる」ポリシーへ置き換えます。
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ 06 CRUD機能 -->
+      <section class="p-case-sec" aria-labelledby="crud">
+        <header class="p-case-sec__head">
+          <p class="p-case-sec__label">06 — CRUD</p>
+          <h2 class="p-case-sec__title" id="crud"><em>CRUD</em> 機能</h2>
+          <p class="p-case-sec__desc">追加・取得・更新・削除を <code>api.ts</code> に閉じ込め、画面側は関数を呼ぶだけにしています。例として「記録を追加」する流れです。</p>
+        </header>
+
+        <div class="p-case-flow" data-reveal>
+          <div class="p-case-flow__step"><h3>入力</h3><p>フォームに科目・時間・日付・メモを入力し送信。</p></div>
+          <div class="p-case-flow__step"><h3>検証</h3><p>科目が空でないか、時間が1以上かをチェック。</p></div>
+          <div class="p-case-flow__step"><h3>insert</h3><p>api.ts が Supabase に insert（型付き）。</p></div>
+          <div class="p-case-flow__step"><h3>即時反映</h3><p>返り値をローカル state の先頭に追加。</p></div>
+          <div class="p-case-flow__step"><h3>異常系</h3><p>失敗は try / catch でメッセージ表示。</p></div>
+        </div>
+
+        <p class="p-case-codecap" data-reveal>api.ts — Create（型を当てて insert、エラーは throw）</p>
+        <div class="p-case-code" data-reveal>
+<pre><code><span class="key">export async function</span> createRecord(input: StudyRecordInput): Promise&lt;StudyRecord&gt; {
+  <span class="key">const</span> { data, error } = <span class="key">await</span> supabase
+    .from('study_records')
+    .insert({
+      subject: input.subject,
+      minutes: input.minutes,
+      studied_on: input.studied_on,
+      memo: input.memo || <span class="key">null</span>,
+    })
+    .select()
+    .single();
+
+  <span class="key">if</span> (error) <span class="key">throw</span> error;
+  <span class="key">return</span> data;
+}</code></pre>
+        </div>
+
+        <div class="p-case-hl" data-reveal>
+          <div class="p-case-hl__item">
+            <div class="p-case-hl__num">R</div>
+            <h3>Read — 一覧取得</h3>
+            <p>学習日の新しい順に取得し、日付別にグループ化して表示。<code>select().order()</code> を使用。</p>
+          </div>
+          <div class="p-case-hl__item">
+            <div class="p-case-hl__num">U</div>
+            <h3>Update — 編集</h3>
+            <p>一覧の「編集」でフォームに値を読み込み、<code>update().eq('id', …)</code> で更新。</p>
+          </div>
+          <div class="p-case-hl__item">
+            <div class="p-case-hl__num">D</div>
+            <h3>Delete — 削除</h3>
+            <p>確認ダイアログののち <code>delete().eq('id', …)</code>。ローカル state からも除外。</p>
+          </div>
+          <div class="p-case-hl__item">
+            <div class="p-case-hl__num">+</div>
+            <h3>集計 — ダッシュボード</h3>
+            <p>取得した記録から、合計時間・科目別・日付別を純粋関数で算出して可視化。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ 07 苦労したこと -->
+      <section class="p-case-sec" aria-labelledby="st">
+        <header class="p-case-sec__head">
+          <p class="p-case-sec__label">07 — Challenges</p>
+          <h2 class="p-case-sec__title" id="st"><em>苦労した</em>こと</h2>
+        </header>
+        <ul class="p-case-list" data-reveal>
+          <li><b>環境変数でつまずいた：</b>Vercel にデプロイ後「環境変数が未設定」エラーが出た。→ Vite は <code>VITE_</code> 変数を<b>ビルド時</b>に埋め込むため、Vercel に変数を登録したあと<b>再デプロイ</b>が必要だと理解して解決。</li>
+          <li><b>RLS で読み書きできない：</b>RLS を有効にしたら最初はデータが取得できなかった（ポリシーが無いと全拒否）。→ 仕組みを理解し、デモ用に anon を許可するポリシーを設定した。</li>
+          <li><b>状態の同期：</b>更新・削除のたびに全件再取得すると重い。→ 返り値や id を使ってローカル state だけ更新する形にした。</li>
+          <li><b>「該当なし」を型で：</b>取得結果が空のときの扱いを型で表現し、表示の出し分けを安全にした。</li>
+        </ul>
+      </section>
+
+      <!-- ============================================================ 08 学んだこと -->
+      <section class="p-case-sec" aria-labelledby="learn">
+        <header class="p-case-sec__head">
+          <p class="p-case-sec__label">08 — Learned</p>
+          <h2 class="p-case-sec__title" id="learn"><em>学んだ</em>こと</h2>
+        </header>
+        <ul class="p-case-list" data-reveal>
+          <li><b>DB を使った Web アプリの全体像：</b>フロントから API 経由で DB を読み書きし、画面に反映する一連の流れを通しで実装できた。</li>
+          <li><b>型安全な実装：</b>DB の行・入力・集計をそれぞれ型で定義し、想定外のデータでも壊れにくくする感覚が身についた。</li>
+          <li><b>状態管理と非同期処理：</b>取得・通信中・成功・エラーを state で扱い、<code>async / await</code> + <code>try / catch / finally</code> でまとめる設計を理解した。</li>
+          <li><b>デプロイと運用：</b>Vercel + Supabase での公開、環境変数の扱い、RLS によるアクセス制御の基礎を実地で学んだ。</li>
+        </ul>
+      </section>
+
+      <!-- ============================================================ 09 今後の改善案 -->
+      <section class="p-case-sec" aria-labelledby="future">
+        <header class="p-case-sec__head">
+          <p class="p-case-sec__label">09 — Future Work</p>
+          <h2 class="p-case-sec__title" id="future">今後の<em>改善案</em></h2>
+        </header>
+        <ul class="p-case-list" data-reveal>
+          <li><code>subjects</code> テーブルへの正規化（外部キー・JOIN を扱う）。</li>
+          <li>Supabase Auth でログインを導入し、ユーザーごとの記録に（RLS を本番仕様へ）。</li>
+          <li>週次・月次の推移グラフ、目標時間の設定など、振り返り機能の強化。</li>
+          <li>Vitest + React Testing Library で、集計ロジックや通信処理のテストを追加。</li>
+        </ul>
+      </section>
+
+      <!-- ============================================================ 10 活かせる点 -->
+      <section class="p-case-sec" aria-labelledby="rl">
+        <header class="p-case-sec__head">
+          <p class="p-case-sec__label">10 — Relevance</p>
+          <h2 class="p-case-sec__title" id="rl">この制作で<em>活かせる点</em></h2>
+        </header>
+        <ul class="p-case-list" data-reveal>
+          <li>本制作で扱った <b>DB連携・CRUD・型安全・状態管理・デプロイ</b> は、SaaS プロダクト開発の基礎としてそのまま実務に活かせると考えています。</li>
+          <li>データを取得して集計・可視化する流れは、<b>SaaS の管理画面（ダッシュボード）</b> に通じます。</li>
+          <li>設計から公開まで<b>一人で完遂</b>した経験は、小さくても「作って届ける」力の裏付けになると考えています。</li>
+          <li>今後は <b>Kotlin / Spring Boot・PostgreSQL</b> を学び、「フロントから DB を扱う」側から「API・DB を設計する」側へ広げ、フルスタックエンジニアとして自走できるよう成長していきたいです。</li>
+        </ul>
+      </section>
+
+      <!-- ============================================================ BOTTOM CTA -->
+      <section class="p-case-cta" aria-labelledby="ctaTitle" data-reveal>
+        <p class="p-case-cta__eyebrow">For Reviewers — 公開中のアプリです</p>
+        <h2 class="p-case-cta__title" id="ctaTitle">React / TypeScript / Supabase を用いて<em>一人で構築・公開</em>した Web アプリです。</h2>
+        <p class="p-case-cta__desc">
+          設計・DB設計・実装・デプロイまでを一人で行いました。実際に動くアプリと、ソースコードをご覧いただけます。
+        </p>
+        <div class="p-case-cta__row">
+          <a class="p-case-cta__btn p-case-cta__btn--primary" href="https://study-tracker-delta-rouge.vercel.app/" target="_blank" rel="noopener noreferrer">Live Site を見る<span aria-hidden="true">↗</span></a>
+          <a class="p-case-cta__btn p-case-cta__btn--ghost" href="https://hirotonozaki.github.io/study-tracker-proposal/" target="_blank" rel="noopener noreferrer">企画書（Proposal）<span aria-hidden="true">↗</span></a>
+          <a class="p-case-cta__btn p-case-cta__btn--ghost" href="https://github.com/hirotonozaki/study-tracker" target="_blank" rel="noopener noreferrer">GitHub<span aria-hidden="true">↗</span></a>
+          <a class="p-case-cta__btn p-case-cta__btn--ghost" href="./index.html#works">Works 一覧に戻る<span aria-hidden="true">→</span></a>
+        </div>
+      </section>
+
+      <nav class="p-case-next" aria-label="ページ移動">
+        <a href="./index.html#works"><span aria-hidden="true">←</span> Works 一覧に戻る</a>
+      </nav>
+
+    </div>
+  </main>
+
+  <footer class="l-footer">
+    <div class="l-container">
+      <div class="l-footer__top">
+        <div class="l-footer__brand">
+          <a class="c-logo c-logo--footer" href="./index.html" aria-label="トップへ">
+            <span class="c-logo__mark" aria-hidden="true">N</span>
+            <span class="c-logo__text">
+              <span class="c-logo__name">Hiroto Nozaki</span>
+              <span class="c-logo__role">Portfolio · 2027</span>
+            </span>
+          </a>
+          <p class="l-footer__tagline">伝わる順番を、設計する。</p>
+        </div>
+        <nav class="l-footer__nav" aria-label="フッターナビゲーション">
+          <p class="l-footer__nav-label">Navigation</p>
+          <ul>
+            <li><a href="./index.html#about">About</a></li>
+            <li><a href="./index.html#works">Works</a></li>
+            <li><a href="./index.html#skills">Skills</a></li>
+            <li><a href="./index.html#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <nav class="l-footer__nav" aria-label="関連リンク">
+          <p class="l-footer__nav-label">Links</p>
+          <ul>
+            <li><a href="https://study-tracker-delta-rouge.vercel.app/" target="_blank" rel="noopener noreferrer">Live Site<span aria-hidden="true">↗</span></a></li>
+            <li><a href="https://github.com/hirotonozaki/study-tracker" target="_blank" rel="noopener noreferrer">GitHub<span aria-hidden="true">↗</span></a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="l-footer__bottom">
+        <small>© 2027 Hiroto Nozaki. Portfolio Work.</small>
+        <small class="l-footer__note">React / TypeScript / Supabase で構築し、Vercel に公開した学習管理アプリです。</small>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#main" class="c-to-top" id="toTop" aria-label="ページトップへ戻る">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path d="m6 14 6-6 6 6"/>
+    </svg>
+  </a>
+
+  <script src="./js/script.js" defer></script>
+</body>
+</html>
