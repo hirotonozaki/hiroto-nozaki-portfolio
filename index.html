@@ -9,8 +9,8 @@
   <!-- ============================================================
        SEO
        ============================================================ -->
-  <title>Hiroto Nozaki — Portfolio | Web Production / Front-end</title>
-  <meta name="description" content="野崎大翔（Hiroto Nozaki）のポートフォリオサイト。Web制作・フロントエンド実装・UI/UX設計を担当。React / TypeScript / Supabase で構築し Vercel に公開した学習管理アプリ Study Tracker、React / TypeScript で実装した郵便番号検索 SPA、公開・運用中の実案件「日本ペンマンシップ協会」公式サイト、自主制作のサイト制作（焼肉 黒耀／NOVA TECH CAREERS／NEXUS Inc./NOIR MEN'S CLINIC）の企画書と実装をご覧いただけます。">
+  <title>Hiroto Nozaki — Portfolio | React / TypeScript / Webアプリ開発</title>
+  <meta name="description" content="野崎大翔（Hiroto Nozaki）のポートフォリオ。React / TypeScript / Supabase（PostgreSQL・RLS）で広告管理SaaS風アプリ「Ad Dashboard」を企画・要件定義・DB設計・実装・公開まで一人で開発。公開・運用中の実案件「日本ペンマンシップ協会」公式サイトや、学習管理アプリ Study Tracker など、Webアプリ開発とWeb制作の実績を掲載しています。">
   <meta name="theme-color" content="#0a0a0a">
   <meta name="robots" content="index,follow">
 
@@ -18,7 +18,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://hirotonozaki.github.io/hiroto-nozaki-portfolio/">
   <meta property="og:title" content="Hiroto Nozaki — Portfolio">
-  <meta property="og:description" content="React / TypeScript / Supabase で構築し Vercel に公開した学習管理アプリ Study Tracker、React / TypeScript の SPA、公開・運用中の実案件「日本ペンマンシップ協会」公式サイトを主軸に、企画・情報設計・UIデザイン・実装・デプロイまで一貫して担当したポートフォリオ。フロントエンド／Webアプリ開発職を目指しています。">
+  <meta property="og:description" content="広告管理SaaS風アプリ「Ad Dashboard」（React / TypeScript / Supabase / PostgreSQL / RLS）を企画から公開まで一人で開発。実案件「日本ペンマンシップ協会」公式サイトは公開・運用中。フロントエンド／Webアプリ開発エンジニアを目指す野崎大翔のポートフォリオです。">
   <meta property="og:site_name" content="Hiroto Nozaki Portfolio">
   <meta property="og:locale" content="ja_JP">
   <meta property="og:image" content="https://hirotonozaki.github.io/hiroto-nozaki-portfolio/assets/images/ogp.png">
@@ -31,7 +31,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Hiroto Nozaki — Portfolio">
-  <meta name="twitter:description" content="公開・運用中の実案件「日本ペンマンシップ協会」公式サイトを主軸に、企画・情報設計・UIデザイン・実装まで一貫担当したポートフォリオ。">
+  <meta name="twitter:description" content="React / TypeScript / Supabase で広告管理SaaS風アプリを企画から公開まで一人で開発。実案件サイトも公開・運用中のポートフォリオ。">
   <meta name="twitter:image" content="https://hirotonozaki.github.io/hiroto-nozaki-portfolio/assets/images/ogp.png">
   <meta name="twitter:image:alt" content="Hiroto Nozaki — Portfolio. 伝わる順番を、設計する。">
 
@@ -56,8 +56,15 @@
       background:linear-gradient(180deg,var(--c-bg-1),var(--c-bg));
       box-shadow:0 40px 90px -50px rgba(0,0,0,.85);}
     .c-feature__media{position:relative;overflow:hidden;background:var(--c-bg-2);
-      border-right:1px solid var(--c-border);min-height:100%;}
-    .c-feature__media img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
+      border-right:1px solid var(--c-border);min-height:100%;
+      display:flex;align-items:center;justify-content:center;
+      padding:3.2rem clamp(1.2rem,2.5vw,2rem) clamp(1.2rem,2.5vw,2rem);}
+    .c-feature__shot{width:100%;margin:0;border:1px solid var(--c-border);border-radius:var(--r);
+      overflow:hidden;background:var(--c-bg);}
+    .c-feature__shot img{display:block;width:100%;height:auto;max-height:560px;object-fit:cover;object-position:top center;}
+    .c-feature__shot figcaption{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.18em;
+      text-transform:uppercase;color:var(--c-text-3);padding:var(--s-3) var(--s-4);
+      border-top:1px solid var(--c-border);background:var(--c-bg-2);}
     .c-feature__pick{position:absolute;top:1rem;left:1rem;z-index:2;display:inline-flex;
       align-items:center;gap:.5em;font-family:var(--f-mono);font-size:.68rem;letter-spacing:.12em;
       text-transform:uppercase;color:#0a0a0a;background:var(--c-gold);
@@ -87,7 +94,7 @@
     .c-feature__cta--ghost:hover{border-color:var(--c-border-gold);color:var(--c-gold);}
     @media (max-width:820px){
       .c-feature{grid-template-columns:1fr;}
-      .c-feature__media{border-right:0;border-bottom:1px solid var(--c-border);aspect-ratio:16/10;}
+      .c-feature__media{border-right:0;border-bottom:1px solid var(--c-border);padding-top:3.4rem;}
     }
   </style>
 
@@ -124,7 +131,7 @@
         <span class="c-logo__mark" aria-hidden="true">N</span>
         <span class="c-logo__text">
           <span class="c-logo__name">Hiroto Nozaki</span>
-          <span class="c-logo__role">Portfolio · 2027</span>
+          <span class="c-logo__role">Portfolio · 2026</span>
         </span>
       </a>
 
@@ -157,7 +164,7 @@
       <div class="l-container p-hero__inner">
         <p class="p-hero__eyebrow" data-reveal>
           <span class="c-pulse" aria-hidden="true"></span>
-          Portfolio · Open to Work — 2027 Spring
+          Portfolio · Open to Work — 即入社可能
         </p>
 
         <h1 class="p-hero__heading" id="heroHeading">
@@ -198,19 +205,19 @@
           </p>
           <div class="p-hero__selected-list">
             <div class="p-hero__selected-item">
-              <dt>◆</dt><dd>Study Tracker<span style="color:var(--c-gold);font-size:.7em;margin-left:.4em;">Web App</span></dd>
+              <dt>◆</dt><dd>Ad Dashboard<span style="color:var(--c-gold);font-size:.7em;margin-left:.4em;">Web App</span></dd>
             </div>
             <div class="p-hero__selected-item">
               <dt>★</dt><dd>日本ペンマンシップ協会<span style="color:var(--c-gold);font-size:.7em;margin-left:.4em;">実案件</span></dd>
             </div>
             <div class="p-hero__selected-item">
-              <dt>01</dt><dd>郵便番号検索 SPA</dd>
+              <dt>01</dt><dd>Study Tracker</dd>
             </div>
             <div class="p-hero__selected-item">
               <dt>02</dt><dd>NOIR MEN'S CLINIC</dd>
             </div>
             <div class="p-hero__selected-item">
-              <dt>03</dt><dd>焼肉 黒耀 — React</dd>
+              <dt>03</dt><dd>郵便番号検索 SPA</dd>
             </div>
           </div>
         </dl>
@@ -248,6 +255,9 @@
             </p>
             <p>
               Vanilla JS で焼肉 黒耀の予約UIを作る中で、状態管理とDOM操作が複雑化していく手触りに違和感が残り、<em>React と TypeScript で再設計</em>を始めました（Project 01+）。型と宣言的UIが設計時点でミスを拾ってくれる体験は、自分のコードを書く前提を変えました。
+            </p>
+            <p>
+              いま目指しているのは、<em>運用の現場を支える Web アプリケーション（SaaS）の開発</em>です。WordPress の実務で「更新し、運用する人」の側に立ち続けた経験から、次は<em>データを集めて判断する業務そのものをソフトウェアで楽にする側</em>に回りたいと考え、広告運用の課題を題材にした「Ad Dashboard」を企画・要件定義から DB 設計・実装・公開まで一人で開発しました。制作で身につけた「運用される前提の設計」を、アプリケーション開発でも軸にしていきます。
             </p>
           </div>
 
@@ -289,42 +299,45 @@
             企画から実装まで、<br><em>一気通貫</em>で担当した作品群。
           </h2>
           <p class="c-section-head__desc">
-            まず <em>Pick Up</em> として、React / TypeScript / Supabase で構築し公開した Web アプリ <em>Study Tracker</em> と、
-            <em>公開・運用中の実案件</em>「日本ペンマンシップ協会」公式サイトを掲載しています。
-            以降は、企画・情報設計・UIデザイン・実装まで一貫して取り組んだ制作物です。
+            まず <em>Pick Up</em> として、React / TypeScript / Supabase（PostgreSQL）で構築・公開した広告管理アプリ <em>Ad Dashboard</em>、
+            <em>公開・運用中の実案件</em>「日本ペンマンシップ協会」公式サイト、WordPress テーマ開発の <em>NOIR MEN'S CLINIC</em> を掲載しています。
+            以降は、企画・情報設計・UIデザイン・実装まで一貫して取り組んだ自主制作です。
             各作品に Live Site／ソースコード／企画書を用意しています。
           </p>
         </header>
 
-        <!-- ★ PICK UP ─ Web Application (Study Tracker) -->
-        <article class="c-feature" id="project-study-tracker" data-reveal aria-labelledby="stFeatureTitle">
-          <a class="c-feature__media" href="./study-tracker-case.html" aria-label="Study Tracker ケーススタディを見る">
+        <!-- ★ PICK UP ─ Web Application (Ad Dashboard) -->
+        <article class="c-feature" id="project-ad-dashboard" data-reveal aria-labelledby="adFeatureTitle">
+          <a class="c-feature__media" href="./ad-dashboard-case.html" aria-label="Ad Dashboard ケーススタディを見る">
             <span class="c-feature__pick">★ Pick Up · Web App</span>
-            <img src="./assets/images/study-tracker-thumb.png" alt="Study Tracker のダッシュボード画面。合計学習時間・科目別の内訳（横棒グラフ）・最近の記録が、白×インディゴの SaaS 風 UI で表示されている。" loading="lazy">
+            <figure class="c-feature__shot">
+              <img src="./assets/images/ad-dashboard-thumb.png" alt="Ad Dashboard のダッシュボード画面。広告費・CTR・CVR・CPA・ROAS の KPI カード8枚と、日別推移のエリアチャート・媒体別成果の棒グラフが、白×ブルーの SaaS 風 UI で表示されている。" loading="lazy">
+              <figcaption>Dashboard UI · React + Recharts</figcaption>
+            </figure>
           </a>
           <div class="c-feature__body">
             <div class="c-feature__head">
-              <span class="c-feature__num">React · TypeScript · Supabase</span>
+              <span class="c-feature__num">React · TypeScript · Supabase / PostgreSQL</span>
               <span class="c-feature__live">公開中</span>
             </div>
-            <h3 class="c-feature__title" id="stFeatureTitle">Study Tracker</h3>
-            <p class="c-feature__sub">学習記録を管理する、DB連携の SaaS 風ダッシュボードアプリ — study-tracker-delta-rouge.vercel.app</p>
+            <h3 class="c-feature__title" id="adFeatureTitle">Ad Dashboard</h3>
+            <p class="c-feature__sub">複数媒体の広告成果を一元管理する SaaS 風ダッシュボード — ad-dashboard-gold.vercel.app</p>
             <p class="c-feature__desc">
-              学習時間や学習内容を記録・管理できる学習管理アプリ。<em>React + TypeScript</em> でフロントエンドを構築し、
-              <em>Supabase</em> によるデータ永続化と <em>CRUD 機能</em>を実装。Vercel へデプロイし公開まで行いました。
-              設計・DB設計から実装・デプロイまで一人で担当しています。
+              媒体ごとに分散する広告成果を1画面に集約し、<em>8つの KPI を自動計算・可視化</em>する広告管理アプリ。
+              <em>Row Level Security</em> による DB レベルのアクセス制御や、導出値を保存しないデータ設計を実装。
+              課題定義から要件・DB設計・実装・公開まで一人で担当し、検討プロセスは<em>企画書</em>として公開しています。
             </p>
             <ul class="c-feature__meta" aria-label="プロジェクト概要">
-              <li>学習管理 Web アプリ（SPA）</li>
-              <li>CRUD / ダッシュボード集計</li>
-              <li>Supabase（PostgreSQL）/ RLS</li>
-              <li>React 18 / TypeScript / Vite</li>
+              <li>広告管理 Web アプリ（SPA / SaaS MVP）</li>
+              <li>KPI 自動計算 / グラフ可視化 / CRUD</li>
+              <li>Supabase（PostgreSQL）/ RLS / 認証</li>
+              <li>React 18 / TypeScript / Vite / Vercel</li>
             </ul>
             <div class="c-feature__links">
-              <a href="https://study-tracker-delta-rouge.vercel.app/" class="c-feature__cta c-feature__cta--primary" target="_blank" rel="noopener noreferrer">Live Site<span aria-hidden="true">↗</span></a>
-              <a href="https://hirotonozaki.github.io/study-tracker-proposal/" class="c-feature__cta c-feature__cta--ghost" target="_blank" rel="noopener noreferrer">Project Proposal<span aria-hidden="true">↗</span></a>
-              <a href="https://github.com/hirotonozaki/study-tracker" class="c-feature__cta c-feature__cta--ghost" target="_blank" rel="noopener noreferrer">GitHub<span aria-hidden="true">↗</span></a>
-              <a href="./study-tracker-case.html" class="c-feature__cta c-feature__cta--ghost">Case Study<span aria-hidden="true">→</span></a>
+              <a href="https://ad-dashboard-gold.vercel.app" class="c-feature__cta c-feature__cta--primary" target="_blank" rel="noopener noreferrer">Live Site<span aria-hidden="true">↗</span></a>
+              <a href="https://hirotonozaki.github.io/ad-dashboard-proposal/" class="c-feature__cta c-feature__cta--ghost" target="_blank" rel="noopener noreferrer">Project Proposal<span aria-hidden="true">↗</span></a>
+              <a href="https://github.com/hirotonozaki/ad-dashboard" class="c-feature__cta c-feature__cta--ghost" target="_blank" rel="noopener noreferrer">GitHub<span aria-hidden="true">↗</span></a>
+              <a href="./ad-dashboard-case.html" class="c-feature__cta c-feature__cta--ghost">Case Study<span aria-hidden="true">→</span></a>
             </div>
           </div>
         </article>
@@ -333,7 +346,10 @@
         <article class="c-feature" id="project-jpa" data-reveal aria-labelledby="jpaFeatureTitle">
           <a class="c-feature__media" href="./jpa-case.html" aria-label="日本ペンマンシップ協会 ケーススタディを見る">
             <span class="c-feature__pick">★ Pick Up · 実案件</span>
-            <img src="./assets/images/jpa/jpa-hero.png" alt="日本ペンマンシップ協会 公式サイトのトップページ。ネイビーとゴールドを基調にカリグラフィーのキービジュアルが表示されている。" loading="lazy">
+            <figure class="c-feature__shot">
+              <img src="./assets/images/jpa/jpa-hero.png" alt="日本ペンマンシップ協会 公式サイトのトップページ。ネイビーとゴールドを基調にカリグラフィーのキービジュアルが表示されている。" loading="lazy">
+              <figcaption>Top Page · japanpenmanship.org</figcaption>
+            </figure>
           </a>
           <div class="c-feature__body">
             <div class="c-feature__head">
@@ -362,123 +378,108 @@
           </div>
         </article>
 
+        <!-- ★ PICK UP ─ WordPress (NOIR MEN'S CLINIC) -->
+        <article class="c-feature" id="project-noir" data-reveal aria-labelledby="noirFeatureTitle">
+          <a class="c-feature__media" href="./assets/pdf/noir-mens-clinic-proposal.pdf" target="_blank" rel="noopener noreferrer" aria-label="NOIR MEN'S CLINIC の企画書（PDF）を見る">
+            <span class="c-feature__pick">★ Pick Up · WordPress</span>
+            <figure class="c-feature__shot">
+              <img src="./assets/images/noir-mockup.svg" alt="NOIR MEN'S CLINIC のデザインモックアップ。PCとスマートフォンで黒×ゴールドの編集デザイン、結果に、静かな自信を、のキャッチコピーが表示されている。" loading="lazy">
+              <figcaption>Design Mockup · Quiet Luxury</figcaption>
+            </figure>
+          </a>
+          <div class="c-feature__body">
+            <div class="c-feature__head">
+              <span class="c-feature__num">WordPress · PHP</span>
+              <span class="c-feature__live">制作中</span>
+            </div>
+            <h3 class="c-feature__title" id="noirFeatureTitle">NOIR MEN'S CLINIC</h3>
+            <p class="c-feature__sub">プレミアム男性医療クリニックの公式サイト — デザインから WordPress テーマ開発まで</p>
+            <p class="c-feature__desc">
+              「<em>Quiet Luxury</em> — 静かな高級感」をコンセプトに、黒×ゴールドの編集デザインで医療機関の信頼性と上質感を両立。
+              <em>WordPress テーマ化</em>を前提に template-parts 分割で設計し、クライアントが自社で更新・運用できる構成にしています。
+              実務で担当している WordPress 更新・改修の経験を、設計から形にした作品です。
+            </p>
+            <ul class="c-feature__meta" aria-label="プロジェクト概要">
+              <li>クリニック公式サイト（架空クライアント）</li>
+              <li>7ページ以上 + オリジナルテーマ</li>
+              <li>template-parts 分割 / 運用前提の設計</li>
+              <li>HTML / CSS / JS / PHP / WordPress</li>
+            </ul>
+            <div class="c-feature__links">
+              <a href="./assets/pdf/noir-mens-clinic-proposal.pdf" class="c-feature__cta c-feature__cta--primary" target="_blank" rel="noopener noreferrer">Proposal (PDF)<span aria-hidden="true">↗</span></a>
+              <a href="./assets/images/noir-wp-structure.svg" class="c-feature__cta c-feature__cta--ghost" target="_blank" rel="noopener noreferrer">Theme Structure<span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </article>
+
         <p class="c-section-head__desc" style="margin-top:var(--s-7);font-family:var(--f-mono);font-size:.74rem;letter-spacing:.08em;color:var(--c-text-3);">
           — Practice / Self-initiated Works（自主制作 — React / TypeScript の Web アプリと、架空クライアントを題材としたサイト制作）
         </p>
 
         <ul class="p-works__list">
+          <!-- Study Tracker（React / TypeScript / Supabase） -->
+          <li class="p-works__item" id="project-study-tracker" data-reveal>
+            <article class="c-work">
+              <div class="c-work__head">
+                <p class="c-work__num">Web Application</p>
+                <span class="c-work__category">React · TypeScript · Supabase</span>
+              </div>
+              <h3 class="c-work__title">Study Tracker</h3>
+              <p class="c-work__subtitle">学習記録を管理する、DB連携の SaaS 風ダッシュボードアプリ</p>
+
+              <figure class="c-work__visual" aria-label="Study Tracker の画面">
+                <img src="./assets/images/study-tracker-thumb.png" alt="Study Tracker のダッシュボード画面。合計学習時間・科目別の内訳（横棒グラフ）・最近の記録が、白×インディゴの SaaS 風 UI で表示されている。" loading="lazy">
+                <figcaption>App UI · React + Supabase</figcaption>
+              </figure>
+
+              <p class="c-work__body">
+                学習時間や学習内容を記録・管理できる学習管理アプリ。React + TypeScript でフロントエンドを構築し、Supabase（PostgreSQL）によるデータ永続化と CRUD・ダッシュボード集計を実装。Vercel へデプロイし、設計から公開まで一人で担当しました。
+              </p>
+              <dl class="c-work__meta">
+                <div><dt>Role</dt><dd>企画 / DB設計 / 実装 / デプロイ</dd></div>
+                <div><dt>Stack</dt><dd>React 18 / TypeScript / Vite / Supabase / RLS</dd></div>
+                <div><dt>Type</dt><dd>シングルページアプリ（SPA）</dd></div>
+              </dl>
+              <ul class="c-work__links">
+                <li><a href="https://study-tracker-delta-rouge.vercel.app/" class="c-work__link c-work__link--primary" target="_blank" rel="noopener noreferrer">Live Site<span aria-hidden="true">↗</span></a></li>
+                <li><a href="./study-tracker-case.html" class="c-work__link">Case Study<span aria-hidden="true">→</span></a></li>
+                <li><a href="https://hirotonozaki.github.io/study-tracker-proposal/" class="c-work__link" target="_blank" rel="noopener noreferrer">Proposal<span aria-hidden="true">↗</span></a></li>
+                <li><a href="https://github.com/hirotonozaki/study-tracker" class="c-work__link" target="_blank" rel="noopener noreferrer">GitHub<span aria-hidden="true">↗</span></a></li>
+              </ul>
+            </article>
+          </li>
           <!-- 郵便番号検索 SPA（React / TypeScript） -->
-          <li class="p-works__item" id="project-zipcode" data-reveal>
+          <li class="p-works__item" id="project-zipcode" data-reveal data-reveal-delay="1">
             <article class="c-work">
               <div class="c-work__head">
                 <p class="c-work__num">Web Application</p>
                 <span class="c-work__category">React · TypeScript</span>
               </div>
               <h3 class="c-work__title">郵便番号検索 SPA</h3>
-              <p class="c-work__subtitle">React 18 / TypeScript で実装した住所検索アプリ</p>
+              <p class="c-work__subtitle">コンポーネント設計・型安全・API通信・エラーハンドリングを実装した住所検索アプリ</p>
 
               <figure class="c-work__visual" aria-label="郵便番号検索 SPA の画面">
                 <img src="./assets/images/zipcode-thumb.png" alt="郵便番号検索 SPA の画面。郵便番号「100-0001」を入力すると、東京都千代田区千代田の住所が表示される、黒×ゴールドのUI。" loading="lazy">
-                <figcaption>App UI · React + TypeScript</figcaption>
+                <figcaption>App UI · React 18 + TypeScript + Vite</figcaption>
               </figure>
 
               <p class="c-work__body">
-                郵便番号から住所を検索する SPA。状態管理・型・API通信・エラー処理を React 18 / TypeScript で設計・実装しました。外部APIとの非同期通信、入力バリデーション、「初期／通信中／成功／エラー」の状態分岐を、型で壊れにくくしながら構築しています。
+                郵便番号から住所を検索する SPA。<strong>hooks / services / types を明確に分離</strong>したコンポーネント設計で、状態管理・型安全・API通信・エラーハンドリングを実装しました。<code>SearchStatus</code> を union 型で表現し、不正な状態が型レベルで発生しない設計を意識。fetch の HTTP エラー・API エラー・ネットワーク断絶を三段階で区別するエラーハンドリングも実装しています。
               </p>
               <dl class="c-work__meta">
-                <div><dt>Role</dt><dd>Front-end Development（設計・実装）</dd></div>
-                <div><dt>Stack</dt><dd>React 18 / TypeScript / Vite / SCSS</dd></div>
+                <div><dt>Role</dt><dd>設計・実装（フロントエンド）</dd></div>
+                <div><dt>Stack</dt><dd>React 18 / TypeScript / Vite / SCSS Modules / ZipCloud API</dd></div>
                 <div><dt>Type</dt><dd>シングルページアプリ（SPA）</dd></div>
               </dl>
               <ul class="c-work__links">
                 <li><a href="./zipcode-case.html" class="c-work__link c-work__link--primary">Case Study を見る<span aria-hidden="true">→</span></a></li>
-                <li><span class="c-work__link c-work__link--static">Live / GitHub<span class="c-work__link-note">公開準備中</span></span></li>
-                <!-- 公開URL対応後：上の static の <li> を削除し、以下を有効化（「リポジトリ名」を実際の名前に差し替え）
-                <li><a href="https://hirotonozaki.github.io/リポジトリ名/" class="c-work__link" target="_blank" rel="noopener noreferrer">Live Site<span aria-hidden="true">↗</span></a></li>
-                <li><a href="https://github.com/hirotonozaki/リポジトリ名" class="c-work__link" target="_blank" rel="noopener noreferrer">GitHub<span aria-hidden="true">↗</span></a></li>
-                -->
+                <li><a href="https://hirotonozaki.github.io/zipcode-spa-3/" class="c-work__link" target="_blank" rel="noopener noreferrer">Live Site<span aria-hidden="true">↗</span></a></li>
+                <li><a href="https://github.com/hirotonozaki/zipcode-spa-3" class="c-work__link" target="_blank" rel="noopener noreferrer">GitHub<span aria-hidden="true">↗</span></a></li>
               </ul>
             </article>
           </li>
-          <!-- 作品 04 -->
-          <li class="p-works__item" data-reveal data-reveal-delay="1">
-            <article class="c-work">
-              <div class="c-work__head">
-                <p class="c-work__num">Project 04</p>
-                <span class="c-work__category">Clinic / WordPress</span>
-              </div>
-              <h3 class="c-work__title">NOIR MEN'S CLINIC</h3>
-              <p class="c-work__subtitle">プレミアム男性医療クリニックの公式サイト</p>
-
-              <figure class="c-work__visual" aria-label="NOIR MEN'S CLINIC デザインモックアップ">
-                <img src="./assets/images/noir-mockup.svg" alt="NOIR MEN'S CLINIC のデザインモックアップ。PCとスマートフォンで黒×ゴールドの編集デザイン、結果に、静かな自信を、のキャッチコピーが表示されている。" loading="lazy">
-                <figcaption>Design Mockup · PC + SP — Quiet Luxury</figcaption>
-              </figure>
-
-              <p class="c-work__body">
-                「Quiet Luxury — 静かな高級感」をコンセプトに、黒×ゴールドの編集デザインで医療機関の信頼性と上質感を両立。WordPressテーマ化を前提に template-parts 分割で設計し、クライアントが自社で運用できる構成に。
-              </p>
-              <dl class="c-work__meta">
-                <div><dt>Role</dt><dd>Planning / Information Architecture / UI Design / WordPress Theme Development</dd></div>
-                <div><dt>Stack</dt><dd>HTML5 / CSS3 / JS / PHP / WordPress</dd></div>
-                <div><dt>Pages</dt><dd>7ページ以上 + オリジナルテーマ</dd></div>
-              </dl>
-              <ul class="c-work__links">
-                <li><a href="./assets/pdf/noir-mens-clinic-proposal.pdf" class="c-work__link c-work__link--primary" target="_blank" rel="noopener noreferrer">Proposal (PDF)<span aria-hidden="true">↗</span></a></li>
-                <li><a href="./assets/images/noir-wp-structure.svg" class="c-work__link" target="_blank" rel="noopener noreferrer">Theme Structure<span aria-hidden="true">↗</span></a></li>
-                <li><span class="c-work__link c-work__link--static">In Development<span class="c-work__link-note">WordPress Theme · Local Environment</span></span></li>
-              </ul>
-            </article>
-          </li>
-          <!-- 作品 01+ ─ React Edition -->
-          <li class="p-works__item" id="project-01-react" data-reveal data-reveal-delay="2">
-            <article class="c-work c-work--react">
-              <div class="c-work__head">
-                <p class="c-work__num">Project 01<span aria-hidden="true">+</span></p>
-                <span class="c-work__category">Brand Site · React Edition</span>
-              </div>
-              <h3 class="c-work__title">焼肉 黒耀 — React Edition</h3>
-
-              <p class="c-work__body">
-                Vanilla で組んだ予約 UI を、React + TypeScript で組み直しました。<code>CourseCard</code> などを共有コンポーネントに切り出し、状態は Context に集約しています。
-              </p>
-
-              <ul class="c-work__chips" aria-label="Vanilla から React への主な変更点">
-                <li>
-                  <span class="c-work__chip-from">DOM 操作</span>
-                  <span class="c-work__chip-arrow" aria-hidden="true">→</span>
-                  <span class="c-work__chip-to">useState / Context</span>
-                </li>
-                <li>
-                  <span class="c-work__chip-from">手動更新</span>
-                  <span class="c-work__chip-arrow" aria-hidden="true">→</span>
-                  <span class="c-work__chip-to">自動再描画</span>
-                </li>
-                <li>
-                  <span class="c-work__chip-from">Global CSS</span>
-                  <span class="c-work__chip-arrow" aria-hidden="true">→</span>
-                  <span class="c-work__chip-to">SCSS Modules</span>
-                </li>
-                <li>
-                  <span class="c-work__chip-from">Untyped</span>
-                  <span class="c-work__chip-arrow" aria-hidden="true">→</span>
-                  <span class="c-work__chip-to">TypeScript</span>
-                </li>
-              </ul>
-
-              <dl class="c-work__meta">
-                <div><dt>Stack</dt><dd>React 18 / TypeScript / Vite / SCSS Modules / React Router</dd></div>
-              </dl>
-
-              <ul class="c-work__links">
-                <li><a href="https://hirotonozaki.github.io/yakiniku-kokuyou-react/" class="c-work__link c-work__link--primary" target="_blank" rel="noopener noreferrer">Live Site<span aria-hidden="true">↗</span></a></li>
-                <li><a href="https://github.com/hirotonozaki/yakiniku-kokuyou-react" class="c-work__link" target="_blank" rel="noopener noreferrer">GitHub<span aria-hidden="true">↗</span></a></li>
-                <li><a href="#project-01" class="c-work__link">Vanilla 版（初期版）を見る<span aria-hidden="true">↓</span></a></li>
-              </ul>
-            </article>
-          </li>
-          <!-- 作品 01 -->
-          <li class="p-works__item" id="project-01" data-reveal data-reveal-delay="3">
+                              <!-- 作品 01 -->
+          <li class="p-works__item" id="project-01" data-reveal data-reveal-delay="2">
             <article class="c-work">
               <div class="c-work__head">
                 <p class="c-work__num">Project 01</p>
@@ -502,7 +503,7 @@
             </article>
           </li>
           <!-- 作品 03 -->
-          <li class="p-works__item" data-reveal data-reveal-delay="4">
+          <li class="p-works__item" data-reveal data-reveal-delay="3">
             <article class="c-work">
               <div class="c-work__head">
                 <p class="c-work__num">Project 03</p>
@@ -525,32 +526,7 @@
               </ul>
             </article>
           </li>
-          <!-- 作品 02 -->
-          <li class="p-works__item" data-reveal data-reveal-delay="5">
-            <article class="c-work">
-              <div class="c-work__head">
-                <p class="c-work__num">Project 02</p>
-                <span class="c-work__category">Recruiting LP</span>
-              </div>
-              <h3 class="c-work__title">NOVA TECH CAREERS</h3>
-              <p class="c-work__subtitle">架空IT企業の採用ランディングページ</p>
-              <p class="c-work__body">
-                「応募数・応募者の質・エントリー完了率」を改善するLPとして設計。FLOCSS命名、Glassmorphism、Formspree実送信フォーム（honeypot + 30秒クールダウン + aria-live通知）を実装。Apple × SaaS × Glass UI のビジュアル言語。
-              </p>
-              <dl class="c-work__meta">
-                <div><dt>Role</dt><dd>Planning / Information Architecture / UI Design / Front-end Development</dd></div>
-                <div><dt>Stack</dt><dd>HTML5 / CSS3 / Vanilla JS / Formspree</dd></div>
-                <div><dt>Pages</dt><dd>シングルページ（縦動線）</dd></div>
-              </dl>
-              <ul class="c-work__links">
-                <li><a href="https://hirotonozaki.github.io/nova-tech-careers/" class="c-work__link c-work__link--primary" target="_blank" rel="noopener noreferrer">Live Site<span aria-hidden="true">↗</span></a></li>
-                <li><a href="https://github.com/hirotonozaki/nova-tech-careers" class="c-work__link" target="_blank" rel="noopener noreferrer">GitHub<span aria-hidden="true">↗</span></a></li>
-                <li><a href="./assets/pdf/nova-tech-careers-proposal.pdf" class="c-work__link" target="_blank" rel="noopener noreferrer">Proposal (PDF)<span aria-hidden="true">↗</span></a></li>
-              </ul>
-            </article>
-          </li>
-
-        </ul>
+                  </ul>
       </div>
     </section>
 
@@ -724,18 +700,11 @@
                 <span class="p-contact__link-arrow" aria-hidden="true">↗</span>
               </a>
             </li>
-            <li>
-              <a href="./assets/pdf/resume.pdf" target="_blank" rel="noopener noreferrer" class="p-contact__link" download>
-                <span class="p-contact__link-label">Resume</span>
-                <span class="p-contact__link-value">履歴書をダウンロード (PDF)</span>
-                <span class="p-contact__link-arrow" aria-hidden="true">↓</span>
-              </a>
-            </li>
           </ul>
 
           <p class="p-contact__note">
-            ※ 履歴書PDFは、住所・電話番号・生年月日の一部を非公開としています。<br>
-            詳細は応募媒体経由・または面接時にお伝えいたします。
+            ※ 履歴書・職務経歴書は、個人情報保護の観点からサイト上では公開せず、<br>
+            応募媒体経由または面談時にお渡ししています。
           </p>
         </div>
       </div>
@@ -755,7 +724,7 @@
             <span class="c-logo__mark" aria-hidden="true">N</span>
             <span class="c-logo__text">
               <span class="c-logo__name">Hiroto Nozaki</span>
-              <span class="c-logo__role">Portfolio · 2027</span>
+              <span class="c-logo__role">Portfolio · 2026</span>
             </span>
           </a>
           <p class="l-footer__tagline">伝わる順番を、設計する。</p>
@@ -774,6 +743,7 @@
         <nav class="l-footer__nav" aria-label="制作物リンク">
           <p class="l-footer__nav-label">Projects</p>
           <ul>
+            <li><a href="./ad-dashboard-case.html">Ad Dashboard<span aria-hidden="true">→</span></a></li>
             <li><a href="./jpa-case.html">日本ペンマンシップ協会<span aria-hidden="true">→</span></a></li>
             <li><a href="https://hirotonozaki.github.io/yakiniku-kokuyou/" target="_blank" rel="noopener noreferrer">焼肉 黒耀<span aria-hidden="true">↗</span></a></li>
             <li><a href="https://hirotonozaki.github.io/yakiniku-kokuyou-react/" target="_blank" rel="noopener noreferrer">焼肉 黒耀 — React Edition<span aria-hidden="true">↗</span></a></li>
@@ -785,7 +755,7 @@
       </div>
 
       <div class="l-footer__bottom">
-        <small>© 2027 Hiroto Nozaki. Portfolio Work.</small>
+        <small>© <span data-current-year>2026</span> Hiroto Nozaki. Portfolio Work.</small>
         <small class="l-footer__note">本サイトには、実案件（日本ペンマンシップ協会）および企画・設計力を示すための自主制作作品を掲載しています。</small>
       </div>
     </div>
