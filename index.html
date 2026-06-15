@@ -185,6 +185,7 @@
         <ul class="p-hero__tech" data-reveal data-reveal-delay="4" aria-label="主な使用技術">
           <li>HTML · CSS · JavaScript</li>
           <li>React · TypeScript</li>
+          <li>Kotlin · Spring Boot</li>
           <li>WordPress</li>
         </ul>
 
@@ -301,7 +302,7 @@
           <p class="c-section-head__desc">
             まず <em>Pick Up</em> として、React / TypeScript / Supabase（PostgreSQL）で構築・公開した広告管理アプリ <em>Ad Dashboard</em>、
             <em>公開・運用中の実案件</em>「日本ペンマンシップ協会」公式サイト、WordPress テーマ開発の <em>NOIR MEN'S CLINIC</em> を掲載しています。
-            以降は、企画・情報設計・UIデザイン・実装まで一貫して取り組んだ自主制作です。
+            以降は、フロントエンドに加え <em>Kotlin / Spring Boot によるバックエンド API 開発</em>など、フルスタックエンジニアを志向した自主制作を掲載しています。
             各作品に Live Site／ソースコード／企画書を用意しています。
           </p>
         </header>
@@ -448,8 +449,48 @@
               </ul>
             </article>
           </li>
+          <!-- Campaign API（Kotlin / Spring Boot） -->
+          <li class="p-works__item" id="project-campaign-api" data-reveal data-reveal-delay="1">
+            <article class="c-work">
+              <div class="c-work__head">
+                <p class="c-work__num">Backend API</p>
+                <span class="c-work__category">Kotlin · Spring Boot</span>
+              </div>
+              <h3 class="c-work__title">Campaign API</h3>
+              <p class="c-work__subtitle">広告施策を管理する REST API — Kotlin / Spring Boot によるバックエンド自主開発</p>
+
+              <figure class="c-work__visual" aria-label="Campaign API のレスポンス例">
+                <div style="background:#0d1117;border-radius:8px;padding:1.2rem 1.4rem;font-family:'Courier New',monospace;font-size:.72rem;line-height:1.7;color:#c9d1d9;text-align:left;overflow:hidden;">
+                  <div style="color:#6e7681;margin-bottom:.6rem;">GET /api/campaigns → 200 OK</div>
+                  <div><span style="color:#79c0ff;">[</span></div>
+                  <div style="padding-left:1em;"><span style="color:#79c0ff;">{</span></div>
+                  <div style="padding-left:2em;"><span style="color:#7ee787;">"id"</span><span style="color:#c9d1d9;">: </span><span style="color:#79c0ff;">1</span><span style="color:#c9d1d9;">,</span></div>
+                  <div style="padding-left:2em;"><span style="color:#7ee787;">"title"</span><span style="color:#c9d1d9;">: </span><span style="color:#a5d6ff;">"春季Google_CV最大化"</span><span style="color:#c9d1d9;">,</span></div>
+                  <div style="padding-left:2em;"><span style="color:#7ee787;">"mediaType"</span><span style="color:#c9d1d9;">: </span><span style="color:#a5d6ff;">"GOOGLE"</span><span style="color:#c9d1d9;">,</span></div>
+                  <div style="padding-left:2em;"><span style="color:#7ee787;">"status"</span><span style="color:#c9d1d9;">: </span><span style="color:#a5d6ff;">"RUNNING"</span></div>
+                  <div style="padding-left:1em;"><span style="color:#79c0ff;">}</span></div>
+                  <div><span style="color:#79c0ff;">]</span></div>
+                </div>
+                <figcaption>REST API · Kotlin + Spring Boot + JUnit 5</figcaption>
+              </figure>
+
+              <p class="c-work__body">
+                広告施策（Campaign）を管理する CRUD REST API。Kotlin / Spring Boot で実装し、<strong>Controller / Service / Repository の3層分離・DTO による Entity 隠蔽・Enum によるデータ整合性担保・グローバル例外ハンドリング</strong>を設計。JUnit 5 によるユニットテスト・GitHub Actions による CI・Render へのデプロイまで一貫して実装。フロントエンドだけでなく、バックエンドの設計・実装・テスト・本番公開まで経験するために開発した作品です。
+              </p>
+              <dl class="c-work__meta">
+                <div><dt>Role</dt><dd>設計 / 実装 / テスト / CI / デプロイ</dd></div>
+                <div><dt>Stack</dt><dd>Kotlin / Spring Boot / Spring Data JPA / H2 / JUnit 5 / Docker / GitHub Actions / Render</dd></div>
+                <div><dt>Type</dt><dd>REST API（バックエンド）</dd></div>
+              </dl>
+              <ul class="c-work__links">
+                <li><a href="https://campaign-api-9t72.onrender.com/api/campaigns" class="c-work__link c-work__link--primary" target="_blank" rel="noopener noreferrer">API<span aria-hidden="true">↗</span></a></li>
+                <li><a href="https://github.com/hirotonozaki/campaign-api" class="c-work__link" target="_blank" rel="noopener noreferrer">GitHub<span aria-hidden="true">↗</span></a></li>
+              </ul>
+            </article>
+          </li>
+
           <!-- 郵便番号検索 SPA（React / TypeScript） -->
-          <li class="p-works__item" id="project-zipcode" data-reveal data-reveal-delay="1">
+          <li class="p-works__item" id="project-zipcode" data-reveal data-reveal-delay="2">
             <article class="c-work">
               <div class="c-work__head">
                 <p class="c-work__num">Web Application</p>
